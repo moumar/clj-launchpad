@@ -47,7 +47,9 @@
 (defn reset 
   "reset the launchpad (all lights off)"
   [lpad]
-  (send-midi lpad 0xB0 0 0))
+  (send-midi lpad 0xB0 0 0)
+  (send-midi lpad 0xB0 0 0x28) ; activate flashing
+  )
 
 (defn clear-grid [lpad]
   "clear the launchpad grid (not the top and left buttons)"
@@ -76,7 +78,6 @@
     (do 
       (.open out-device)
       (.open in-device)
-      (send-midi lpad 0xB0 0 0x28) ; activate flashing
       (test-leds lpad)
       (Thread/sleep 100)
       (reset lpad))
