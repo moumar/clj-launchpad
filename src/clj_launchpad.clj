@@ -1,7 +1,7 @@
 (ns clj-launchpad
   (:import [javax.sound.midi MidiSystem Receiver ShortMessage]))
 
-(def #^private intensities
+(def #^{:private true} intensities
   { :off 0 :low 1 :medium 2 :high 3 })
 
 (defn- send-midi [{:keys [out]} & args]
@@ -38,7 +38,7 @@
         midi-position     (if (= 8 y) 
                             (+ x 0x68)
                             (+ x (* 16 y)))   ]
-    (comment println 
+    #_(println 
              "x" x 
              "y" y 
              "velocity:" velocity)
