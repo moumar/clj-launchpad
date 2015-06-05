@@ -62,17 +62,20 @@
   ([lpad intensity]
     (send-midi lpad 0xb0 0 (+ (intensity intensities) 0x7c))))
 
-(defn open [] 
-  "find the launchpad in the available midi devices and return a launchpad object suitable
-  for the calls of this library"
+(defn
+  (open []
+        "find the launchpad name \"Launchpad\" in the available midi devices and return a launchpad object suitable for the calls of this library"
+        (open "Launchpad"))
+  (open [name]
+  "find the launchpad by name in the available midi devices and return a launchpad object suitable for the calls of this library"
   (let [[in-device out-device]
-           (sort-by #(.getMaxTransmitters % ) 
-                    (map #(MidiSystem/getMidiDevice %) 
-                  (filter #(= "Launchpad" (.getName %)) (MidiSystem/getMidiDeviceInfo)))) 
+        (sort-by #(.getMaxTransmitters % )
+                 (map #(MidiSystem/getMidiDevice %)
+                      (filter #(= name (.getName %)) (MidiSystem/getMidiDeviceInfo))))
         out (.getReceiver out-device)
         in (.getTransmitter in-device)
-        lpad {:in-device in-device 
-              :out-device out-device 
+        lpad {:in-device in-device
+              :out-device out-device
               :in in
               :out out}]
     (do 
