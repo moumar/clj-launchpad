@@ -62,6 +62,10 @@
   ([lpad intensity]
     (send-midi lpad 0xb0 0 (+ (intensity intensities) 0x7c))))
 
+(defn midi-device-names []
+  "returns names of available Midi devices, usable with the open function"
+  (map #(.getName %) (MidiSystem/getMidiDeviceInfo)))
+
 (defn
   (open []
         "find the launchpad name \"Launchpad\" in the available midi devices and return a launchpad object suitable for the calls of this library"
