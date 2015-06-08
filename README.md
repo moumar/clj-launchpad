@@ -1,6 +1,6 @@
 # clj-launchpad [![Clojars Project](http://clojars.org/clj-launchpad/latest-version.svg)](http://clojars.org/clj-launchpad)
 
-"Novation Launchpad library for clojure"
+Novation Launchpad library for clojure
 
 ## Usage
 
