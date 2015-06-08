@@ -1,6 +1,7 @@
 (ns clj-launchpad.test.core
-  (:use [clj-launchpad.core])
-  (:use [clojure.test]))
+  (:require [clojure.test :refer :all])
+  (:require [clj-launchpad :refer :all]))
 
-(deftest replace-me ;; FIXME: write
-  (is false "No tests have been written."))
+(deftest setup-test
+  (testing "if the setup is correct to run tests"
+    (is true (< 1 2))))
