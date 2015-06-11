@@ -1,4 +1,4 @@
-(defproject clj-launchpad "0.3.2"
+(defproject clj-launchpad "0.3.3-SNAPSHOT"
   :description "Novation Launchpad library for clojure"
   :url "https://github.com/moumar/clj-launchpad"
   :license {:name "Eclipse Public License"
