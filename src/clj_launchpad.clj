@@ -110,7 +110,7 @@
                       (callback x y pressed?))))))
 
 (defn create-press-register [{:keys [in]}]
-  "Creates a function that can register multiple callbacks for grid presses."
+  "Creates a functions to register and unregister callbacks for grid presses"
   (let [callbacks (atom [])]
     (.setReceiver in
                 (reify Receiver
@@ -127,7 +127,8 @@
                               (quot b 16))]
                       (doseq [callback @callbacks]
                         (callback x y pressed?))))))
-    (fn [callback] (swap! callbacks (fn [callbacks] (into callbacks [callback]))))))
+    {:register (fn [callback] (swap! callbacks (fn [callbacks] (into callbacks [callback]))))
+     :unregister (fn [callback] (swap! callbacks (fn [callbacks] (filter #(not (= % callback)) callbacks))))}))
 
 (defn close [lpad]
   "close the launchpad device"
