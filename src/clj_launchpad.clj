@@ -109,6 +109,26 @@
                               (quot b 16))]
                       (callback x y pressed?))))))
 
+(defn create-press-register [{:keys [in]}]
+  "Creates a function that can register multiple callbacks for grid presses."
+  (let [callbacks (atom [])]
+    (.setReceiver in
+                (reify Receiver
+                  (send [this msg ts]
+                    (let [cmd (.getCommand msg)
+                          b (.getData1 msg)
+                          top-button? (= 0xb0 cmd)
+                          pressed? (= 127 (.getData2 msg))
+                          x (if top-button?
+                              (- b 0x68)
+                              (-> b (mod 16) (mod 9)))
+                          y (if top-button?
+                              8
+                              (quot b 16))]
+                      (doseq [callback @callbacks]
+                        (callback x y pressed?))))))
+    (fn [callback] (swap! callbacks (fn [callbacks] (into callbacks [callback]))))))
+
 (defn close [lpad]
   "close the launchpad device"
   (dorun (map #(.close %) (vals lpad))))
