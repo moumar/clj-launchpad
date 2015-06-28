@@ -6,7 +6,7 @@ Novation Launchpad library for clojure
 
 Starting out with `clj-launchpad` is fairly easy. We will walk you through a basic scenario that you can adopt to your needs.
 
-We will use [leiningen][] start a demo project. The following command creates a new Clojure project in the `clj-launchpad-demo` directory
+We will use [leiningen][] to start a demo project. The following command creates a new Clojure project in the `clj-launchpad-demo` directory
 
 ```sh
 > lein new app clj-launchpad-demo
