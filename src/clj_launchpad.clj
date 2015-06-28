@@ -110,7 +110,7 @@
                       (callback x y pressed?))))))
 
 (defn create-press-register [{:keys [in]}]
-  "Creates a functions to register and unregister callbacks for grid presses"
+  "Creates a registry to register and unregister callbacks for grid presses"
   (let [callbacks (atom [])]
     (.setReceiver in
                 (reify Receiver
