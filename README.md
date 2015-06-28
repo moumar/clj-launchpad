@@ -22,7 +22,7 @@ In the newly created directory there is a `project.clj`. Open it and add `clj-la
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [clj-launchpad "0.3.0]]
+                 [clj-launchpad "0.3.2]]
   :main ^:skip-aot clj-launchpad-demo.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
